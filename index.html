@@ -6,28 +6,60 @@
     <title>Modern Yapılacaklar Listesi</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <style>
+      body {
+        transition: background-color 0.3s ease, color 0.3 ease;
+      }
+      #task-box {
+        transition: background-color 0.3s ease, color 0.3 ease;
+      }
+      .color-secondary {
+        color: #caf205;
+      }
+      .color-primary {
+        color: #1e1e26;
+      }
+    </style>
   </head>
-  <body
-    class="bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-all"
-  >
+  <body class="bg-gray-100 text-gray-900 transition-all">
     <div
       class="container mx-auto min-h-screen flex items-center justify-center"
     >
       <div
-        class="w-full max-w-md p-8 bg-white dark:bg-gray-800 rounded-2xl shadow-lg relative"
+        id="task-box"
+        class="w-full max-w-md p-8 bg-white bg-gray-400 text-gray-800 rounded-2xl relative"
       >
-        <h1 class="text-2xl font-bold mb-6">📝 Yapılacaklar Listem</h1>
+        <div class="flex justify-between items-center">
+          <h1 class="text-2xl font-bold mb-6">📝 Yapılacaklar Listem</h1>
+
+          <!-- Tema değiştirme butonu (ikon ile) -->
+          <button
+            id="theme-toggle"
+            class="relative bottom-2 right-2 px-4 py-2 rounded-md border border-slate-300 py-2 px-4 text-center text-sm transition-all shadow-sm hover:shadow-lg text-gray-800 hover:text-white hover:bg-slate-800 hover:border-slate-800"
+          >
+            <!-- Başlangıçta açık mod ikonu -->
+            <i class="fas fa-sun"></i>
+          </button>
+        </div>
 
         <div class="flex gap-2 mb-4">
           <input
             id="todo-input"
             type="text"
-            class="w-full p-2 border rounded-lg dark:bg-gray-700 dark:border-gray-600"
+            class="w-full p-2 border rounded-lg bg-gray-100 border-gray-200"
             placeholder="Yeni görev ekleyini..."
           />
           <button
             id="add-btn"
-            class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
+            class="rounded-md border border-slate-300 py-2 px-4 text-center text-sm transition-all shadow-sm hover:shadow-lg text-gray-800 hover:text-white hover:bg-slate-800 hover:border-slate-800"
+            type="button"
           >
             Ekle
           </button>
