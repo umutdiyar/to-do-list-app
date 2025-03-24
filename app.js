@@ -63,6 +63,8 @@ document.addEventListener("DOMContentLoaded", () => {
       "p-2",
       "rounded-lg",
       "shadow-sm",
+      "overflow-visible",
+      "break-words",
       isDarkMode ? "bg-gray-700" : "bg-gray-50"
     );
 
@@ -70,7 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
       <input type="checkbox" class="task-checkbox mr-2" ${
         task.completed ? "checked" : ""
       }>
-      <span class="${
+      <span class="flex-1 break-words ${
         task.completed
           ? "line-through text-gray-400"
           : isDarkMode
