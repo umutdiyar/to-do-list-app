@@ -1,35 +1,27 @@
 document.addEventListener("DOMContentLoaded", () => {
   const input = document.getElementById("todo-input");
-  const addBtn = document.getElementById("add-btn");
   const todoList = document.getElementById("todo-list");
-
   const themeToggleBtn = document.getElementById("theme-toggle");
   const themeIcon = themeToggleBtn.querySelector("i");
   const taskBox = document.getElementById("task-box");
 
-  // Tema rengini değiştirme
+  // 🌗 Tema değiştirme
   themeToggleBtn.addEventListener("click", () => {
     const isDarkMode = document.body.classList.contains("bg-gray-800");
 
-    if (isDarkMode) {
-      document.body.classList.remove("bg-gray-800", "text-gray-200");
-      document.body.classList.add("bg-gray-100", "text-gray-900");
-      themeIcon.classList.replace("fa-moon", "fa-sun");
-    } else {
-      document.body.classList.remove("bg-gray-100", "text-gray-800");
-      document.body.classList.add("bg-gray-800", "text-gray-200");
-      themeIcon.classList.replace("fa-sun", "fa-moon");
-    }
+    document.body.classList.toggle("bg-gray-800", !isDarkMode);
+    document.body.classList.toggle("text-gray-200", !isDarkMode);
+    document.body.classList.toggle("bg-gray-100", isDarkMode);
+    document.body.classList.toggle("text-gray-900", isDarkMode);
+    themeIcon.classList.replace(
+      isDarkMode ? "fa-sun" : "fa-moon",
+      isDarkMode ? "fa-moon" : "fa-sun"
+    );
 
-    themeToggleBtn.classList.toggle("text-gray-800");
-    themeToggleBtn.classList.toggle("text-gray-200");
-    themeToggleBtn.classList.toggle("hover:bg-gray-600", isDarkMode);
-    themeToggleBtn.classList.toggle("hover:bg-gray-300", !isDarkMode);
-
-    addBtn.classList.toggle("text-gray-800");
-    addBtn.classList.toggle("text-gray-200");
-    addBtn.classList.toggle("hover:bg-gray-600", isDarkMode);
-    addBtn.classList.toggle("hover:bg-gray-100", !isDarkMode);
+    themeToggleBtn.classList.toggle("text-gray-200", !isDarkMode);
+    themeToggleBtn.classList.toggle("hover:text-gray-800", isDarkMode);
+    themeToggleBtn.classList.toggle("hover:bg-gray-800", !isDarkMode);
+    themeToggleBtn.classList.toggle("hover:bg-gray-300", isDarkMode);
 
     taskBox.classList.toggle("bg-gray-400");
     taskBox.classList.toggle("bg-gray-800");
@@ -45,13 +37,13 @@ document.addEventListener("DOMContentLoaded", () => {
     updateTaskTheme();
   });
 
-  // Görevleri Local Storage'dan yükle
+  // 📥 LocalStorage'dan görevleri yükle
   const loadTasks = () => {
     const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
     tasks.forEach((task) => addTaskToDOM(task));
   };
 
-  // Görevleri DOM'a ekle
+  // ✅ Görevleri DOM'a ekle
   const addTaskToDOM = (task) => {
     const li = document.createElement("li");
     const isDarkMode = document.body.classList.contains("bg-gray-800");
@@ -89,6 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (isChecked) {
         taskText.classList.add("line-through", "text-gray-400");
+        taskText.classList.remove("text-white", "text-black");
 
         setTimeout(() => {
           li.remove();
@@ -105,6 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
     todoList.appendChild(li);
   };
 
+  // 🎨 Tema geçişinde görevleri güncelle
   const updateTaskTheme = () => {
     const isDarkMode = document.body.classList.contains("bg-gray-800");
     document.querySelectorAll("li").forEach((li) => {
@@ -119,7 +113,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   };
 
-  // Görevleri kaydet
+  // 💾 Görevleri kaydet
   const saveTasks = () => {
     const tasks = Array.from(todoList.children).map((li) => {
       return {
@@ -130,17 +124,19 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
   };
 
-  // Görev ekle
-  addBtn.addEventListener("click", () => {
-    const taskText = input.value.trim();
-    if (taskText) {
-      const newTask = {
-        text: taskText,
-        completed: false,
-      };
-      addTaskToDOM(newTask);
-      saveTasks();
-      input.value = ""; // inputu temizle
+  // ⌨️ Enter tuşu ile görev ekle
+  input.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      const taskText = input.value.trim();
+      if (taskText) {
+        const newTask = {
+          text: taskText,
+          completed: false,
+        };
+        addTaskToDOM(newTask);
+        saveTasks();
+        input.value = "";
+      }
     }
   });
 
