@@ -3,7 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Modern Yapılacaklar Listesi</title>
+    <title>ToDoListApp</title>
+    <link
+      rel="shortcut icon"
+      href="assets/icon/favicon-32x32.png"
+      type="image/x-icon"
+    />
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link
@@ -30,18 +35,25 @@
         id="task-box"
         class="w-full max-w-md p-8 bg-white bg-gray-400 text-gray-800 rounded-2xl relative"
       >
-        <div class="flex justify-between items-center">
-          <h1 class="text-2xl font-bold mb-6">📝 Yapılacaklar Listem</h1>
+        <div class="flex flex-col items-center">
+          <div class="flex justify-between items-center w-full">
+            <h1 class="text-2xl font-bold mb-4">📝 Yapılacaklar Listesi</h1>
 
-          <!-- Tema değiştirme butonu (ikon ile) -->
-          <button
-            id="theme-toggle"
-            class="relative bottom-2 right-2 px-4 py-2 rounded-md border border-slate-300 py-2 px-4 text-center text-sm transition-all shadow-sm hover:shadow-lg text-gray-800 hover:text-white hover:bg-slate-800 hover:border-slate-800"
-          >
-            <!-- Başlangıçta açık mod ikonu -->
-            <i class="fas fa-sun"></i>
-          </button>
+            <!-- Tema değiştirme butonu (ikon ile) -->
+            <button
+              id="theme-toggle"
+              class="relative bottom-2 right-2 px-4 py-2 rounded-md border border-slate-300 py-2 px-4 text-center text-sm transition-all shadow-sm hover:shadow-lg text-gray-800 hover:text-white hover:bg-slate-800 hover:border-slate-800"
+            >
+              <!-- Başlangıçta açık mod ikonu -->
+              <i class="fas fa-sun"></i>
+            </button>
+          </div>
         </div>
+
+        <p
+          id="date"
+          class="text-sm text-gray-700 dark:text-gray-400 mb-4 font-stretch-extra-expanded"
+        ></p>
 
         <div class="flex gap-2 mb-4">
           <input

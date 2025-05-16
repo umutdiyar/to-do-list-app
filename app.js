@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
         setTimeout(() => {
           li.remove();
           saveTasks();
-        }, 3000);
+        }, 2000);
       } else {
         taskText.classList.remove("line-through", "text-gray-400");
         taskText.classList.add(isDarkMode ? "text-white" : "text-black");
@@ -140,5 +140,19 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  const updateDate = () => {
+    const dateElement = document.getElementById("date");
+    const now = new Date();
+    const options = {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    };
+    const formattedDate = now.toLocaleDateString("tr-TR", options);
+    dateElement.textContent = formattedDate;
+  };
+
+  updateDate();
   loadTasks();
 });
