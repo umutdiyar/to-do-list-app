@@ -12,7 +12,8 @@ A simple and user-friendly to-do list application built with HTML, TailwindCSS, 
 
 ## 📸 Screenshots
 
-> *(Optional: Add screenshots here to showcase the app interface)*
+![Screenshot Light Theme](https://github.com/umutdiyar/to-do-list-app/raw/main/public/screenshot_lightTheme.png)
+
 
 **If you want to contribute my project you can make a pull request. I'd be happy** <br>
 
